@@ -62,7 +62,7 @@ class Programme extends Model {
 
     const credits = this._elements.find(el => el.name === 'credits')
     this.credits =
-      credits && credits.elements.length
+      credits && credits.elements && credits.elements.length
         ? credits.elements.map(el => {
             return {
               role: el.name,
