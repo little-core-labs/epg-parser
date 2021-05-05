@@ -46,7 +46,9 @@ class Programme extends Model {
     this.icon = this._get('icon').map(el => el.src)
 
     const rating = this._elements.find(el => el.name === 'rating')
-    this.rating =
+
+    try {
+      this.rating =
       rating && rating.elements.length
         ? rating.elements
             .map(el => {
@@ -64,10 +66,12 @@ class Programme extends Model {
     this.credits =
       credits && credits.elements && credits.elements.length
         ? credits.elements.map(el => {
+          if (el.elements && el.elements.length > 0){
             return {
               role: el.name,
               name: el.elements[0].text
             }
+          }
           })
         : []
 
@@ -80,6 +84,9 @@ class Programme extends Model {
           }
         })[0]
       })
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 
