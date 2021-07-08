@@ -33,7 +33,7 @@ class Programme extends Model {
     super(data)
 
     this.start = this._attributes.start
-    this.stop = this._attributes.stop
+    this.stop = this._attributes.stop || this._attributes.end
     this.channel = this._attributes.channel
 
     this.title = this._get('title')
